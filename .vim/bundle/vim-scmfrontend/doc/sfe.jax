@@ -1,0 +1,450 @@
+*sfe.txt*       Mercurial/Git/Bazaar フロントエンド
+
+        Copyright (c) 2009-2010 Takeshi NISHIDA
+
+ScmFrontEnd                                                              *sfe*
+
+概要                            |sfe-introduction|
+インストール                    |sfe-installation|
+使い方                          |sfe-usage|
+コマンド                        |sfe-commands|
+オプション                      |sfe-options|
+CHANGELOG                       |sfe-changelog|
+あばうと                        |sfe-about|
+
+==============================================================================
+概要                                                        *sfe-introduction*
+
+ScmFrontEnd は様々な SCM システム (VCS) のリポジトリを扱うプラグインです。抽象
+化されたインターフェースにより SCM システムの違いを意識することなくリポジトリ
+を扱うことができます。
+
+特徴:
+  - Mercurial サポート
+  - Git サポート
+  - Bazaar サポート
+  - 抽象化されたインターフェース
+  - 多くのコマンド
+  - commit バッファ内の status と diff のシンタックスハイライト
+  - annotate バッファの シンタックスハイライト
+  - リビジョン/ブランチ名の補完
+  - pull/pushする場所の補完
+  - リポジトリ情報のステータスラインでの表示
+  - Fuzzyfinder プラグインとの連携
+
+
+==============================================================================
+インストール                                                *sfe-installation*
+
+ZIPファイルをランタイムディレクトリに展開します。
+
+以下のようにファイルが配置されるはずです。
+>
+        <your runtime directory>/plugin/sfe.vim
+        <your runtime directory>/doc/sfe.txt
+        ...
+<
+もしランタイムディレクトリが多数のプラグインでごちゃごちゃになるのが嫌なら、各
+プラグインを個別のディレクトリに配置し、そのディレクトリのパスを 'runtimepath'
+に追加してください。アンインストールも楽になります。
+
+その後、ヘルプを有効にするためにタグファイルを更新してください。詳しくは
+|add-local-help|を参照してください。
+
+必要なもの: ~
+
+- L9 library (vimscript #3252)
+
+任意の拡張: ~
+
+- FuzzyFinder (vimscript #1984)
+
+
+==============================================================================
+使い方                                                             *sfe-usage*
+
+|sfe-commands|を参照してください。
+
+                                                              *sfe-statusline*
+                                                           *g:sfe_getStatus()*
+リポジトリ情報をステータスラインに表示 ~
+
+g:sfe_getStatus() を利用してください。(関連項目: |'statusline'|)
+
+                                                             *sfe-fuzzyfinder*
+Fuzzyfinder プラグインとの連携 ~
+
+ScmFrontEnd は FuzzyFinder の API を利用しています。以下のコマンドは
+FuzzyFinder に依存しています:
+
+        :SfeFindFile
+
+
+==============================================================================
+コマンド                                                        *sfe-commands*
+
+全てのコマンドはカレントバッファのファイルを含むリポジトリに対して実行されます
+。
+
+ScmFrontEnd のコマンドが ! 修飾子付きで実行された場合、利用するSCMシステムの優
+先順位を逆転させます。
+
+                                                                 *:SfeCommand*
+:SfeCommand[!]                  (デフォルトキーマッピング: \s:)
+
+        入力した任意のコマンドを実行します。
+
+                                                              *:SfeCommitFile*
+:SfeCommitFile[!]               (デフォルトキーマッピング: \sC)
+
+        カレントバッファのファイルをコミットします。
+
+                使用する SCM コマンド ~
+                hg  : commit
+                git : commit
+                bzr : commit
+
+                                                           *:SfeCommitTracked*
+:SfeCommitTracked[!]            (デフォルトキーマッピング: \s<C-c>)
+
+        追跡されている全ファイルをコミットします。
+
+                使用する SCM コマンド ~
+                hg  : commit
+                git : commit -a
+                bzr : commit
+
+                                                               *:SfeCommitAll*
+:SfeCommitAll[!]                (デフォルトキーマッピング: \sc)
+
+        カレントリポジトリの作業ディレクトリ内の全ファイルをコミットします。
+
+        追跡されていないファイルをカレントリポジトリに追加する点が
+        |:SfeCommitTracked| と異なります。
+
+                使用する SCM コマンド ~
+                hg  : commit -A
+                git : add -a && commit -a
+                bzr : add && commit
+
+                                                              *:SfeRecordFile*
+:SfeRecordFile[!]               (デフォルトキーマッピング: \sE)
+
+        TODO
+
+                使用する SCM コマンド ~
+                hg  : record
+                git : (unavailable)
+                bzr : (unavailable)
+
+                                                               *:SfeRecordAll*
+:SfeRecordAll[!]                (デフォルトキーマッピング: \se)
+
+        TODO
+
+                使用する SCM コマンド ~
+                hg  : record -A
+                git : (unavailable)
+                bzr : (unavailable)
+
+                                                                *:SfeCheckout*
+:SfeCheckout[!]                 (デフォルトキーマッピング: \so)
+
+        指定したリビジョンをチェックアウトします。
+
+                使用する SCM コマンド ~
+                hg  : update
+                git : checkout
+                bzr : (unavailable)
+
+                                                                   *:SfeMerge*
+:SfeMerge[!]                    (デフォルトキーマッピング: \sm)
+
+        指定したリビジョンを作業ディレクトリにマージします。
+
+                使用する SCM コマンド ~
+                hg  : merge
+                git : merge
+                bzr : (unavailable)
+
+                                                                  *:SfeBranch*
+:SfeBranch[!]                   (デフォルトキーマッピング: \sb)
+
+        新ブランチを作成します。
+
+                使用する SCM コマンド ~
+                hg  : branch
+                git : checkout -b
+                bzr : (unavailable)
+
+                                                            *:SfeBranchDelete*
+:SfeBranchDelete[!]             (デフォルトキーマッピング: \sB)
+
+        既存のブランチを削除します。
+
+                使用する SCM コマンド ~
+                hg  : (unavailable)
+                git : branch -d
+                bzr : (unavailable)
+
+                                                                  *:SfeRebase*
+:SfeRebase[!]                   (デフォルトキーマッピング: \sr)
+
+        カレントブランチを指定したリビジョン/ブランチ上へ移動します。
+
+                使用する SCM コマンド ~
+                hg  : rebase --keepbranches -b . -d <revision/branch>
+                git : rebase <revision/branch>
+                bzr : (unavailable)
+
+                                                                   *:SfeStrip*
+:SfeStrip[!]                   (デフォルトキーマッピング: \st)
+
+
+        カレントリポジトリから指定したリビジョンおよびその子孫を除外します。
+
+                使用する SCM コマンド ~
+                hg  : strip <revision>
+                git : (unavailable)
+                bzr : (unavailable)
+
+                                                                    *:SfePull*
+:SfePull[!]                     (デフォルトキーマッピング: \s[)
+
+        指定リポジトリから pull します。
+
+                使用する SCM コマンド ~
+                hg  : pull
+                git : pull
+                bzr : pull
+
+                                                                    *:SfePush*
+:SfePush[!]                     (デフォルトキーマッピング: \s])
+
+        指定リポジトリへ push します。
+
+                使用する SCM コマンド ~
+                hg  : push
+                git : push
+                bzr : push
+
+                                                                *:SfeDiffFile*
+:SfeDiffFile[!]                 (デフォルトキーマッピング: \sD)
+
+        カレントバッファのファイルとその指定リビジョンのバージョン間で、
+        (vimdiff のような) Diff モードを新規タブページで開始します。
+
+                使用する SCM コマンド ~
+                hg  : cat
+                git : cat-file -p
+                bzr : cat
+
+                                                                 *:SfeDiffAll*
+:SfeDiffAll[!]                  (デフォルトキーマッピング: \sd)
+
+        カレントリポジトリの作業ディレクトリ内の全ファイルと指定リビジョン間の
+        差分を表示します。
+
+                使用する SCM コマンド ~
+                hg  : diff
+                git : diff
+                bzr : diff
+
+                                                                 *:SfeLogFile*
+:SfeLogFile[!]                  (デフォルトキーマッピング: \sL)
+
+        カレントバッファのファイルに関係するリビジョンの履歴を表示します。(関
+        連項目: |g:sfe_hgLogOption| |g:sfe_gitLogOption| |g:sfe_bzrLogOption|)
+
+                使用する SCM コマンド ~
+                hg  : glog
+                git : log
+                bzr : log
+
+                                                                  *:SfeLogAll*
+:SfeLogAll[!]                   (デフォルトキーマッピング: \sl)
+
+        リビジョンの履歴を表示します。(関連項目: |g:sfe_hgLogOption|
+        |g:sfe_gitLogOption| |g:sfe_bzrLogOption|)
+
+                使用する SCM コマンド ~
+                hg  : glog
+                git : log
+                bzr : log
+
+                                                            *:SfeAnnotateFile*
+:SfeAnnotateFile[!]             (デフォルトキーマッピング: \sn)
+
+        カレントバッファのファイルの各行について、コミット情報を表示します。
+
+        指定リビジョンのコミットで修正された行と最初のコミットで追加された行は
+        ハイライト表示されます。
+
+                使用する SCM コマンド ~
+                hg  : annotate -nudq
+                git : blame
+                bzr : annotate --all --long
+
+                                                                  *:SfeStatus*
+:SfeStatus[!]                   (デフォルトキーマッピング: \ss)
+
+        変更のあるファイルのリストを表示します。
+
+                使用する SCM コマンド ~
+                hg  : status
+                git : diff --name-status && ls-files --exclude-standard -o
+                bzr : status
+
+                                                                    *:SfeGrep*
+:SfeGrep[!]                     (デフォルトキーマッピング: \sg)
+
+        指定パターンで検索し、|quickfix|リストを作成します。
+
+                使用する SCM コマンド ~
+                hg  : grep -n
+                git : grep -n -e
+                bzr : (unavailable)
+
+                                                            *:SfeLoadModified*
+:SfeLoadModified[!]             (デフォルトキーマッピング: \s!)
+
+        変更されている全ファイルを vim に読み込みます。無関係のバッファは
+        (:bdelete で)アンロードされます。
+
+                使用する SCM コマンド ~
+                hg  : status -mn
+                git : ls-files -m
+                bzr : status -SV
+
+                                                                 *:SfeLoadAll*
+:SfeLoadAll[!]                  (デフォルトキーマッピング: \s<CR>)
+
+        追跡されている全ファイルを vim に読み込みます。無関係のバッファは
+        (:bdelete で)アンロードされます。
+
+                使用する SCM コマンド ~
+                hg  : locate -f
+                git : ls-files
+                bzr : ls
+
+                                                                *:SfeFindFile*
+:SfeFindFile[!]                 (デフォルトキーマッピング: \sf)
+
+        Fuzzyfinder を使って追跡されている全ファイルの中からファイルを選択
+        して開きます。(関連項目: |sfe-fuzzyfinder|)
+
+                使用する SCM コマンド ~
+                hg  : locate -f
+                git : ls-files
+                bzr : ls
+
+==============================================================================
+オプション                                                       *sfe-options*
+
+                                                      *g:sfe_availableScms*  >
+  let g:sfe_availableScms = ['git', 'mercurial', 'bazaar']
+<
+        利用したい SCM システム名のリストです。
+
+        複数のSCMシステムのリポジトリが見つかった場合、カレントとなるリポジト
+        リの優先順位は g:sfe_availableScms の順に準じます。
+
+                                                          *g:sfe_mapLeader*  >
+  let g:sfe_mapLeader = '\s'
+<
+        ScmFrontEnd コマンドへマップされるキー列のプレフィックスです。
+
+                                                 *g:sfe_mapLeaderAlternate*  >
+  let g:sfe_mapLeaderAlternate = '\S'
+<
+        ScmFrontEnd コマンドへマップされるキー列のプレフィックスです。
+
+        このプレフィックスから実行されたコマンドでは、利用する SCM システムの
+        優先順位が逆転します。
+
+                                                      *g:sfe_mapKeyCommand*  >
+  let g:sfe_mapKeyCommand       = ':'
+<                                                  *g:sfe_mapKeyCommitFile*  >
+  let g:sfe_mapKeyCommitFile    = 'C'
+<                                               *g:sfe_mapKeyCommitTracked*  >
+  let g:sfe_mapKeyCommitTracked = '<C-c>'
+<                                                   *g:sfe_mapKeyCommitAll*  >
+  let g:sfe_mapKeyCommitAll     = 'c'
+<                                                    *g:sfe_mapKeyCheckout*  >
+  let g:sfe_mapKeyCheckout      = 'o'
+<                                                       *g:sfe_mapKeyMerge*  >
+  let g:sfe_mapKeyMerge         = 'm'
+<                                                      *g:sfe_mapKeyBranch*  >
+  let g:sfe_mapKeyBranch        = 'b'
+<                                                *g:sfe_mapKeyBranchDelete*  >
+  let g:sfe_mapKeyBranchDelete  = 'B'
+<                                                      *g:sfe_mapKeyRebase*  >
+  let g:sfe_mapKeyRebase        = 'r'
+<                                                        *g:sfe_mapKeyPull*  >
+  let g:sfe_mapKeyPull          = '['
+<                                                        *g:sfe_mapKeyPush*  >
+  let g:sfe_mapKeyPush          = ']'
+<                                                    *g:sfe_mapKeyDiffFile*  >
+  let g:sfe_mapKeyDiffFile      = 'D'
+<                                                     *g:sfe_mapKeyDiffAll*  >
+  let g:sfe_mapKeyDiffAll       = 'd'
+<                                                     *g:sfe_mapKeyLogFile*  >
+  let g:sfe_mapKeyLogFile       = 'L'
+<                                                      *g:sfe_mapKeyLogAll*  >
+  let g:sfe_mapKeyLogAll        = 'l'
+<                                                *g:sfe_mapKeyAnnotateFile*  >
+  let g:sfe_mapKeyAnnotateFile  = 'n'
+<                                                      *g:sfe_mapKeyStatus*  >
+  let g:sfe_mapKeyStatus        = 's'
+<                                                        *g:sfe_mapKeyGrep*  >
+  let g:sfe_mapKeyGrep          = 'g'
+<                                                *g:sfe_mapKeyLoadModified*  >
+  let g:sfe_mapKeyLoadModified  = '!'
+<                                                     *g:sfe_mapKeyLoadAll*  >
+  let g:sfe_mapKeyLoadAll       = '<CR>'
+<                                                    *g:sfe_mapKeyFindFile*  >
+  let g:sfe_mapKeyFindFile      = 'f'
+<
+        ScmFrontEnd コマンドへマップされるキー列の、|g:sfe_mapLeader|や
+        |g:sfe_mapLeaderAlternate|に続く部分です。
+
+                                                        *g:sfe_hgLocations*  >
+  let g:sfe_hgLocations  = []
+<                                                      *g:sfe_gitLocations*  >
+  let g:sfe_gitLocations = []
+<                                                      *g:sfe_bzrLocations*  >
+  let g:sfe_bzrLocations = []
+<
+        SfePull と SfePush で補完候補になるリポジトリの場所です。
+
+                                                      *g:sfe_hgPullIsFetch*  >
+  let g:sfe_hgPullIsFetch = 0
+<
+        真なら SfePull コマンドは 'hg pull' の代わりに 'hg fetch' を実行します
+        。
+
+                                                        *g:sfe_hgLogOption*  >
+  let g:sfe_hgLogOption  = '--style compact'
+<                                                      *g:sfe_gitLogOption*  >
+  let g:sfe_gitLogOption = '--all --graph --pretty=format:''%h (%ci) %s'''
+<                                                      *g:sfe_bzrLogOption*  >
+  let g:sfe_bzrLogOption = '--line'
+<
+        各 SCM システムの log コマンドのオプションです。
+
+
+==============================================================================
+あばうと                                *sfe-about* *sfe-contact* *sfe-author*
+
+作者:       Takeshi NISHIDA <ns9tks@DELETE-ME.gmail.com>
+ライセンス: MIT Licence
+URL:        http://www.vim.org/scripts/script.php?script_id=2637
+            http://bitbucket.org/ns9tks/vim-sfe/
+
+バグや要望など ~
+
+こちらへどうぞ: http://bitbucket.org/ns9tks/vim-sfe/issues/
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
+
