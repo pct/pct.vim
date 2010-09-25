@@ -1,0 +1,30 @@
+[submodule ".vim/bundle/html5.vim"]
+	path = .vim/bundle/html5.vim
+	url = git://github.com/othree/html5.vim.git
+[submodule ".vim/bundle/PIV"]
+	path = .vim/bundle/PIV
+	url = git://github.com/spf13/PIV.git
+[submodule ".vim/bundle/cocoa.vim"]
+	path = .vim/bundle/cocoa.vim
+	url = git://github.com/msanders/cocoa.vim.git
+[submodule ".vim/bundle/neocomplcache"]
+	path = .vim/bundle/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule ".vim/bundle/pyflakes-vim"]
+	path = .vim/bundle/pyflakes-vim
+	url = git://github.com/kevinw/pyflakes-vim.git
+[submodule ".vim/bundle/snipmate.vim"]
+	path = .vim/bundle/snipmate.vim
+	url = git://github.com/msanders/snipmate.vim.git
+[submodule ".vim/bundle/vcscommand"]
+	path = .vim/bundle/vcscommand
+	url = git://repo.or.cz/vcscommand
+[submodule ".vim/bundle/vim-easytags"]
+	path = .vim/bundle/vim-easytags
+	url = git://github.com/xolox/vim-easytags.git
+[submodule ".vim/bundle/xmledit"]
+	path = .vim/bundle/xmledit
+	url = git://github.com/sukima/xmledit.git
+[submodule ".vim/bundle/zencoding-vim"]
+	path = .vim/bundle/zencoding-vim
+	url = git://github.com/mattn/zencoding-vim.git
