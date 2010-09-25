@@ -67,7 +67,8 @@ endfunction
 function s:registerCoverage()
   let patterns = []
   while 1
-    let pattern = l9#inputHl('Question', '[fuf] Glob pattern for coverage (<Esc> and end):')
+    let pattern = l9#inputHl('Question', '[fuf] Glob pattern for coverage (<Esc> and end):',
+          \                  '', 'file')
     if pattern !~ '\S'
       break
     endif

@@ -1,5 +1,5 @@
 "=============================================================================
-" Copyright (c) 2007-2010 Takeshi NISHIDA
+" Copyright (c) 2010 Takeshi NISHIDA
 "
 "=============================================================================
 " LOAD GUARD {{{1
@@ -13,29 +13,29 @@ endif
 " GLOBAL FUNCTIONS {{{1
 
 "
-function fuf#bookmark#createHandler(base)
+function fuf#bookmarkfile#createHandler(base)
   return a:base.concretize(copy(s:handler))
 endfunction
 
 "
-function fuf#bookmark#getSwitchOrder()
-  return g:fuf_bookmark_switchOrder
+function fuf#bookmarkfile#getSwitchOrder()
+  return g:fuf_bookmarkfile_switchOrder
 endfunction
 
 "
-function fuf#bookmark#renewCache()
+function fuf#bookmarkfile#renewCache()
 endfunction
 
 "
-function fuf#bookmark#requiresOnCommandPre()
+function fuf#bookmarkfile#requiresOnCommandPre()
   return 0
 endfunction
 
 "
-function fuf#bookmark#onInit()
-  call fuf#defineLaunchCommand('FufBookmark', s:MODE_NAME, '""')
-  command! -bang -narg=?        FufAddBookmark               call s:bookmarkHere(<q-args>)
-  command! -bang -narg=0 -range FufAddBookmarkAsSelectedText call s:bookmarkHere(l9#getSelectedText())
+function fuf#bookmarkfile#onInit()
+  call fuf#defineLaunchCommand('FufBookmarkFile', s:MODE_NAME, '""')
+  command! -bang -narg=?        FufBookmarkFileAdd               call s:bookmarkHere(<q-args>)
+  command! -bang -narg=0 -range FufBookmarkFileAddAsSelectedText call s:bookmarkHere(l9#getSelectedText())
 endfunction
 
 " }}}1
@@ -56,7 +56,7 @@ endfunction
 "
 function s:getMatchingLineNumber(lines, pattern, lnumBegin)
   let l = min([a:lnumBegin, len(a:lines)])
-  for [l0, l1] in map(range(0, g:fuf_bookmark_searchRange),
+  for [l0, l1] in map(range(0, g:fuf_bookmarkfile_searchRange),
         \             '[l + v:val, l - v:val]')
     if l0 <= len(a:lines) && a:lines[l0 - 1] =~# a:pattern
       return l0
@@ -119,7 +119,7 @@ endfunction
 
 "
 function s:handler.getPrompt()
-  return fuf#formatPrompt(g:fuf_bookmark_prompt, self.partialMatching, '')
+  return fuf#formatPrompt(g:fuf_bookmarkfile_prompt, self.partialMatching, '')
 endfunction
 
 "
@@ -177,7 +177,7 @@ endfunction
 
 "
 function s:handler.onModeEnterPost()
-  call fuf#defineKeyMappingInHandler(g:fuf_bookmark_keyDelete,
+  call fuf#defineKeyMappingInHandler(g:fuf_bookmarkfile_keyDelete,
         \                            'onCr(' . s:OPEN_TYPE_DELETE . ')')
   let self.items = fuf#loadDataFile(s:MODE_NAME, 'items')
   call map(self.items, 'fuf#makeNonPathItem(v:val.word, strftime(g:fuf_timeFormat, v:val.time))')
