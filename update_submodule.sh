@@ -6,5 +6,14 @@ git submodule update
 cd .vim/bundle 
 
 for i in `ls`
-do cd $i; git pull; hg pull; hg up; cd -
+do cd $i;
+    if [ -e .git ]; then
+        git checkout master; git pull; 
+    fi;
+
+    if [ -e .hg ]; then
+        hg pull; hg up; 
+    fi;
+    
+    cd -
 done
