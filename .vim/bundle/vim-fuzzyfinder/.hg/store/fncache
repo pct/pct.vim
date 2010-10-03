@@ -30,3 +30,4 @@ data/plugin/fuf.vim.i
 data/plugin/fuzzyfinder.vim.i
 data/autoload/fuf/bookmarkdir.vim.i
 data/autoload/fuf/bookmarkfile.vim.i
+data/autoload/fuf/buffertag.vim.i
