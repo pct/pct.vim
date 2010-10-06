@@ -2,6 +2,7 @@
 autocmd BufRead,BufNewFile *.py map <F5> :% w !python<CR>
 autocmd BufRead,BufNewFile *.py map <F6> :% w !nosetests<CR>
 autocmd BufRead,BufNewFile *.php map <F5> :% w !php<CR>
+autocmd BufRead,BufNewFile *.php map <F6> :% w !php -l<CR>
 
 set guifont=Droid\ Sans\ Mono\ 12
 let g:use_zen_complete_tag=1
