@@ -1,6 +1,7 @@
 " 按 F5 自動以 !python 來執行現行 script
 autocmd BufRead,BufNewFile *.py map <F5> :% w !python<CR>
 autocmd BufRead,BufNewFile *.py map <F6> :% w !nosetests<CR>
+autocmd BufRead,BufNewFile *.py map <F7> :% w !pyflakes<CR>
 autocmd BufRead,BufNewFile *.php map <F5> :% w !php<CR>
 autocmd BufRead,BufNewFile *.php map <F6> :% w !php -l<CR>
 
