@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/vcscommand"]
 	path = .vim/bundle/vcscommand
 	url = git://repo.or.cz/vcscommand
-[submodule ".vim/bundle/vim-easytags"]
-	path = .vim/bundle/vim-easytags
-	url = git://github.com/xolox/vim-easytags.git
 [submodule ".vim/bundle/xmledit"]
 	path = .vim/bundle/xmledit
 	url = git://github.com/sukima/xmledit.git
