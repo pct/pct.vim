@@ -34,3 +34,12 @@
 [submodule ".vim/bundle/vim-peepopen"]
 	path = .vim/bundle/vim-peepopen
 	url = git://github.com/shemerey/vim-peepopen.git
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
+	url = git://github.com/vim-scripts/taglist.vim.git
+[submodule ".vim/bundle/bufexplorer"]
+	path = .vim/bundle/bufexplorer
+	url = git://github.com/vim-scripts/bufexplorer.zip.git
+[submodule ".vim/bundle/ragtag"]
+	path = .vim/bundle/ragtag
+	url = git://github.com/vim-scripts/ragtag.vim.git
