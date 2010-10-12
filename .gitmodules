@@ -49,3 +49,24 @@
 [submodule ".vim/bundle/vimwiki"]
 	path = .vim/bundle/vimwiki
 	url = git://github.com/vim-scripts/vimwiki.git
+[submodule ".vim/bundle/css-pretty"]
+	path = .vim/bundle/css-pretty
+	url = git://github.com/vim-scripts/Css-Pretty.git
+[submodule ".vim/bundle/more.vim"]
+	path = .vim/bundle/more.vim
+	url = git://github.com/c9s/more.vim.git
+[submodule ".vim/bundle/dbext.vim"]
+	path = .vim/bundle/dbext.vim
+	url = git://github.com/vim-scripts/dbext.vim.git
+[submodule ".vim/bundle/fugitive.vim"]
+	path = .vim/bundle/fugitive.vim
+	url = git://github.com/vim-scripts/fugitive.vim.git
+[submodule ".vim/bundle/man-page-view"]
+	path = .vim/bundle/man-page-view
+	url = git://github.com/vim-scripts/ManPageView.git
+[submodule ".vim/bundle/Align"]
+	path = .vim/bundle/Align
+	url = git://github.com/vim-scripts/Align.git
+[submodule ".vim/bundle/txt-browser"]
+	path = .vim/bundle/txt-browser
+	url = git://github.com/vim-scripts/TxtBrowser.git
