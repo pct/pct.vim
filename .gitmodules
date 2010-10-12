@@ -43,3 +43,9 @@
 [submodule ".vim/bundle/ragtag"]
 	path = .vim/bundle/ragtag
 	url = git://github.com/vim-scripts/ragtag.vim.git
+[submodule ".vim/bundle/calendar.vim"]
+	path = .vim/bundle/calendar.vim
+	url = git://github.com/vim-scripts/calendar.vim--Matsumoto.git
+[submodule ".vim/bundle/vimwiki"]
+	path = .vim/bundle/vimwiki
+	url = git://github.com/vim-scripts/vimwiki.git
