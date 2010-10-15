@@ -14,6 +14,18 @@ let Tlist_Auto_Open = 1
 
 call pathogen#runtime_append_all_bundles()
 
+if version >= 703
+  set conceallevel=1
+  set concealcursor=nc
+  set colorcolumn=+1
+  set cinoptions+=L0
+  set undofile
+  set undodir=~/.vim/undofiles
+  if !isdirectory(&undodir)
+    call mkdir(&undodir, "p")
+  endif
+endif
+
 " ==== neocomplcache start ====
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
