@@ -14,6 +14,19 @@ let Tlist_Auto_Open = 1
 
 call pathogen#runtime_append_all_bundles()
 
+let g:user_zen_settings = {
+    \  'php' : {
+    \    'extends' : 'html',
+    \    'filters' : 'c',
+    \  },
+    \  'xml' : {
+    \    'extends' : 'html',
+    \  },
+    \  'haml' : {
+    \    'extends' : 'html',
+    \  },
+\}
+
 if version >= 703
   set conceallevel=1
   set concealcursor=nc
@@ -46,8 +59,8 @@ let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
-	\ }
-	
+        \ }
+    
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
@@ -71,8 +84,8 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
@@ -93,7 +106,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
+    let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
