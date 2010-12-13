@@ -31,41 +31,43 @@ How to update
 vim scripts in bundle
 ----------------------
 
-Align
-Engspchk
-PIV
-bufexplorer
-c.vim
-calendar.vim
-cocoa.vim
-css-pretty
-dbext.vim
-fugitive.vim
-html5.vim
-man-page-view
-matchit
-more.vim
-neocomplcache
-nerdtree_plugin
-pydiction
-pyflakes-vim
-ragtag
-snipmate.vim
-supertab
-taglist.vim
-txt-browser
-vcscommand
-vim-autocomplpop
-vim-easytags
-vim-fuzzyfinder
-vim-l9
-vim-peepopen
-vim-rails
-vim-scmfrontend
-vim-surround
-vimwiki
-xmledit
-zencoding-vim
+::
+
+    Align
+    Engspchk
+    PIV
+    bufexplorer
+    c.vim
+    calendar.vim
+    cocoa.vim
+    css-pretty
+    dbext.vim
+    fugitive.vim
+    html5.vim
+    man-page-view
+    matchit
+    more.vim
+    neocomplcache
+    nerdtree_plugin
+    pydiction
+    pyflakes-vim
+    ragtag
+    snipmate.vim
+    supertab
+    taglist.vim
+    txt-browser
+    vcscommand
+    vim-autocomplpop
+    vim-easytags
+    vim-fuzzyfinder
+    vim-l9
+    vim-peepopen
+    vim-rails
+    vim-scmfrontend
+    vim-surround
+    vimwiki
+    xmledit
+    zencoding-vim
 
 --------------------------------
 Create your own vim environment
