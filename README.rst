@@ -6,7 +6,7 @@ pct.vim
 How to use
 ----------
 
-1. clone to your home dir::
+1. clone to your home directory::
 
     $ git clone git://github.com/pct/pct.vim.git
 
@@ -66,4 +66,13 @@ vim-surround
 vimwiki
 xmledit
 zencoding-vim
+
+--------------------------------
+Create your own vim environment
+--------------------------------
+
+1. use pct.vim for basement
+
+2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
+
 
