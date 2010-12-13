@@ -306,7 +306,7 @@ Contact ~
 If you have questions, bug reports, suggestions, etc. the author can be
 contacted at peter@peterodding.com. The latest version is available at
 http://peterodding.com/code/vim/easytags/ and http://github.com/xolox/vim-easytags.
-If you like this plug-in please vote for it on www.vim.org [12].
+If you like this plug-in please vote for it on Vim Online [12].
 
 ==============================================================================
 License ~
