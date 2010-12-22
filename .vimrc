@@ -124,7 +124,6 @@ set ttymouse=xterm
 
 " For language complete
 autocmd FileType php set dictionary+=~/.vim/dict/php.list
-"autocmd FileType php set dictionary+=~/.vim/dict/zf.list
 autocmd FileType php set complete+=k
 
 autocmd FileType javascript set dictionary+=~/.vim/dict/jquery.list
