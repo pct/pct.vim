@@ -14,16 +14,44 @@ let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 call pathogen#runtime_append_all_bundles()
 
 let g:user_zen_settings = {
-    \  'php' : {
-    \    'extends' : 'html',
-    \    'filters' : 'c',
-    \  },
-    \  'xml' : {
-    \    'extends' : 'html',
-    \  },
-    \  'haml' : {
-    \    'extends' : 'html',
-    \  },
+\  'lang' : 'ja',
+\  'html' : {
+\    'filters' : 'html',
+\    'indentation' : ' '
+\  },
+\  'perl' : {
+\    'indentation' : '  ',
+\    'aliases' : {
+\      'req' : "require '|'"
+\    },
+\    'snippets' : {
+\      'use' : "use strict\nuse warnings\n\n",
+\      'w' : "warn \"${cursor}\";",
+\    },
+\  },
+\  'php' : {
+\    'extends' : 'html',
+\    'filters' : 'html,c',
+\  },
+\  'css' : {
+\    'filters' : 'fc',
+\  },
+\  'javascript' : {
+\    'snippets' : {
+\      'jq' : "$(function() {\n\t${cursor}${child}\n});",
+\      'jq:each' : "$.each(arr, function(index, item)\n\t${child}\n});",
+\      'fn' : "(function() {\n\t${cursor}\n})();",
+\      'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
+\    },
+\  },
+\ 'java' : {
+\  'indentation' : '    ',
+\  'snippets' : {
+\   'main': "public static void main(String[] args) {\n\t|\n}",
+\   'println': "System.out.println(\"|\");",
+\   'class': "public class | {\n}\n",
+\  },
+\ },
 \}
 
 if version >= 703
@@ -90,11 +118,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 "let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
-"setlocal completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+set completeopt+=longest
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_disable_auto_complete = 1
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
