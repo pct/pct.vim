@@ -118,11 +118,11 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 "let g:neocomplcache_enable_auto_select = 1
 
 " Shell like behavior(not recommended).
-set completeopt+=longest
-let g:neocomplcache_enable_auto_select = 1
-let g:neocomplcache_disable_auto_complete = 1
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
