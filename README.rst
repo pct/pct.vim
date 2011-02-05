@@ -50,7 +50,6 @@ vim scripts in bundle
     neocomplcache
     nerdtree_plugin
     pydiction
-    pyflakes-vim
     ragtag
     snipmate.vim
     supertab
@@ -77,4 +76,10 @@ Create your own vim environment
 
 2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
 
+---
+FAQ
+---
 
+#. Cannot found ctags? Just find your ctags path and add the example setting bellow to your .vimrc::
+
+    let g:easytags_cmd = '/usr/local/bin/ctags' 
