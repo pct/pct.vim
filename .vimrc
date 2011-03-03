@@ -11,6 +11,7 @@ let g:user_zen_expandabbr_key = '<c-e>'
 let python_highlight_all = 1
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
 let g:user_zen_settings = {

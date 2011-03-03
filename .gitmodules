@@ -70,3 +70,9 @@
 [submodule ".vim/bundle/Engspchk"]
 	path = .vim/bundle/Engspchk
 	url = git://github.com/vim-scripts/Engspchk.git
+[submodule ".vim/bundle/nginx.vim"]
+	path = .vim/bundle/nginx.vim
+	url = https://github.com/vim-scripts/nginx.vim.git
+[submodule ".vim/bundle/gundo.vim"]
+	path = .vim/bundle/gundo.vim
+	url = git://github.com/sjl/gundo.vim.git
