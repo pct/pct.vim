@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/gundo.vim"]
 	path = .vim/bundle/gundo.vim
 	url = git://github.com/sjl/gundo.vim.git
+[submodule ".vim/bundle/OOP-javascript-indentation.git"]
+	path = .vim/bundle/OOP-javascript-indentation.git
+	url = git://github.com/vim-scripts/OOP-javascript-indentation.git
