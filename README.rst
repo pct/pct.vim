@@ -27,6 +27,22 @@ How to update
     $ cd pct.vim
     $ git pull; ./update_submodule.sh
 
+---
+FAQ
+---
+
+#. Cannot found ctags? Just find your ctags path and add the example setting bellow to your .vimrc::
+
+    let g:easytags_cmd = '/usr/local/bin/ctags' 
+
+--------------------------------
+Create your own vim environment
+--------------------------------
+
+1. use pct.vim for basement
+
+2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
+
 ----------------------
 vim scripts in bundle
 ----------------------
@@ -35,6 +51,7 @@ vim scripts in bundle
 
     Align
     Engspchk
+    OOP-javascript-indentation.git
     PIV
     bufexplorer
     c.vim
@@ -43,12 +60,14 @@ vim scripts in bundle
     css-pretty
     dbext.vim
     fugitive.vim
+    gundo.vim
     html5.vim
     man-page-view
     matchit
     more.vim
     neocomplcache
     nerdtree_plugin
+    nginx.vim
     pydiction
     ragtag
     snipmate.vim
@@ -57,6 +76,7 @@ vim scripts in bundle
     txt-browser
     vcscommand
     vim-autocomplpop
+    vim-coffee-script
     vim-easytags
     vim-fuzzyfinder
     vim-l9
@@ -68,18 +88,3 @@ vim scripts in bundle
     xmledit
     zencoding-vim
 
---------------------------------
-Create your own vim environment
---------------------------------
-
-1. use pct.vim for basement
-
-2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
-
----
-FAQ
----
-
-#. Cannot found ctags? Just find your ctags path and add the example setting bellow to your .vimrc::
-
-    let g:easytags_cmd = '/usr/local/bin/ctags' 
