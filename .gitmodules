@@ -79,3 +79,6 @@
 [submodule ".vim/bundle/OOP-javascript-indentation.git"]
 	path = .vim/bundle/OOP-javascript-indentation.git
 	url = git://github.com/vim-scripts/OOP-javascript-indentation.git
+[submodule ".vim/bundle/vim-coffee-script"]
+	path = .vim/bundle/vim-coffee-script
+	url = git://github.com/kchmck/vim-coffee-script.git
