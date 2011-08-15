@@ -21,8 +21,9 @@ basic functionality (one automatic command and a call to |system()| later) I
 became interested in dynamic syntax highlighting, so I added that as well to
 see if it would work -- surprisingly well I'm happy to report!
 
-==============================================================================
-Install & usage ~
+===============================================================================
+                                                         *easytags-installation*
+Installation ~
 
 Unzip the most recent ZIP archive [6] file inside your Vim profile directory
 (usually this is '~/.vim' on UNIX and '%USERPROFILE%\vimfiles' on Windows),
@@ -35,8 +36,8 @@ file you're editing in Vim (as long as it's on the local file system), tags
 will always be available by the time you need them!
 
 Additionally if the file you just opened is a C, C++, Objective-C, Java, Lua,
-Python, PHP or Vim source file you should also notice that the function and
-type names defined in the file have been syntax highlighted.
+Python, PHP, Ruby or Vim source file you should also notice that the function
+and type names defined in the file have been syntax highlighted.
 
 The 'easytags.vim' plug-in is intended to work automatically once it's
 installed, but if you want to change how it works there are several options
@@ -49,8 +50,9 @@ install it by executing the following shell command:
 >
     $ sudo apt-get install exuberant-ctags
 
-------------------------------------------------------------------------------
-If you're using Windows ~
+-------------------------------------------------------------------------------
+                                                 *easytags-a-note-about-windows*
+A note about Windows ~
 
 On Windows the |system()| function used by 'easytags.vim' causes a command
 prompt window to pop up while Exuberant Ctags is executing. If this bothers
@@ -58,25 +60,29 @@ you then you can install my shell.vim [7] plug-in which includes a DLL [8]
 that works around this issue. Once you've installed both plug-ins it should
 work out of the box! Please let me know if this doesn't work for you.
 
-------------------------------------------------------------------------------
+===============================================================================
+                                                             *easytags-commands*
+Commands ~
+
+-------------------------------------------------------------------------------
 The *:UpdateTags* command
 
 This command executes Exuberant Ctags [1] from inside Vim to update the global
-tags file defined by |g:easytags_file|. When no arguments are given the tags for
-the current file are updated, otherwise the arguments are passed on to
+tags file defined by |g:easytags_file|. When no arguments are given the tags
+for the current file are updated, otherwise the arguments are passed on to
 'ctags'. For example when you execute the Vim command ':UpdateTags -R ~/.vim'
 (or ':UpdateTags -R ~\vimfiles' on Windows) the plug-in will execute 'ctags -R
 ~/.vim' for you (with some additional arguments, see the troubleshooting
-section ":HighlightTags only works for the tags file created by |:UpdateTags|"
-for more information).
+section "|:HighlightTags| only works for the tags file created by
+|:UpdateTags|" for more information).
 
-When you execute this command like |:UpdateTags|! (including the bang!) then all
-tags whose files are missing will be filtered from the global tags file.
+When you execute this command like ':UpdateTags!' (including the bang!) then
+all tags whose files are missing will be filtered from the global tags file.
 
 Note that this command will be executed automatically every once in a while,
 assuming you haven't changed |g:easytags_on_cursorhold|.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The *:HighlightTags* command
 
 When you execute this command while editing one of the supported file types
@@ -87,20 +93,38 @@ option).
 Note that this command will be executed automatically every once in a while,
 assuming you haven't changed |g:easytags_on_cursorhold|.
 
-------------------------------------------------------------------------------
+===============================================================================
+                                                              *easytags-options*
+Options ~
+
+The easytags plug-in should work out of the box but if you don't like the
+default configuration you can change how it works by setting the variables
+documented below. Most of these variables can also be changed for specific
+files by setting a buffer local variable instead of the global variable. For
+example to disable automatic highlighting (enabled by default) only in Python
+files you can add the following line to your |vimrc| script:
+>
+    :autocmd FileType python let b:easytags_auto_highlight = 0
+
+Note that buffer local variables always override global variables, so if you
+want to undo this for a specific file you have to use |:unlet|:
+>
+    :unlet b:easytags_auto_highlight
+
+-------------------------------------------------------------------------------
 The *g:easytags_cmd* option
 
 The plug-in will try to determine the location where Exuberant Ctags is
 installed on its own but this might not always work because any given
 executable named 'ctags' in your '$PATH' might not in fact be Exuberant Ctags
 but some older, more primitive 'ctags' implementation which doesn't support
-the same command line options and thus breaks the 'easytags.vim' plug-in. If
-this is the case you can set the global variable |g:easytags_cmd| to the
-location where you've installed Exuberant Ctags, e.g.:
+the same command line options and thus breaks the easytags plug-in. If this is
+the case you can set the global variable |g:easytags_cmd| to the location
+where you've installed Exuberant Ctags, e.g.:
 >
     :let g:easytags_cmd = '/usr/local/bin/ctags'
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The *g:easytags_file* option
 
 As mentioned above the plug-in will store your tags in '~/.vimtags' on UNIX
@@ -109,10 +133,52 @@ global variable |g:easytags_file|, e.g.:
 >
     :let g:easytags_file = '~/.vim/tags'
 
-A leading '~' in the |g:easytags_file| variable is expanded to your current home
-directory ('$HOME' on UNIX, '%USERPROFILE%' on Windows).
+A leading '~' in the |g:easytags_file| variable is expanded to your current
+home directory ('$HOME' on UNIX, '%USERPROFILE%' on Windows).
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+The *g:easytags_dynamic_files* option
+
+By default |:UpdateTags| only writes to the global tags file. If you use the
+following setting to enable project specific tags files:
+>
+    :set tags=./tags;
+
+You can enable this option so that the project specific tags files are written
+instead of the global tags file:
+>
+    :let g:easytags_dynamic_files = 1
+
+When you enable this option, the easytags plug-in will use the first filename
+returned by |tagfiles()| as the tags file to write. Note that 'tagfiles()' is
+reevaluated every time the plug-in runs.
+
+If you've also enabled |g:easytags_by_filetype| the project specific tags file
+must exist, even if it's empty; otherwise |g:easytags_by_filetype| will take
+precedence.
+
+-------------------------------------------------------------------------------
+The *g:easytags_by_filetype* option
+
+By default all tags are stored in a global tags file. When the tags file grows
+beyond a certain size Vim will be slowed down by the easytags plug-in because
+it has to read and process a large number of tags very frequently.
+
+To avoid this problem you can set |g:easytags_by_filetype| to the path of an
+existing directory. The easytags plug-in will create separate tags files for
+each file type in the configured directory. These tags files are automatically
+registered by the easytags plug-in when the file type of a buffer is set.
+
+If you've also enabled |g:easytags_dynamic_files| and the project specific
+tags file exists, and is writable, it will take precedence. If the project
+specific tags file doesn't exist you can indicate you want to use project
+specific tags by creating it.
+
+Note that if you already have a global tags file you can create file type
+specific tags files from the global tags file using the command
+':TagsByFileType'.
+
+-------------------------------------------------------------------------------
 The *g:easytags_always_enabled* option
 
 By default the plug-in automatically generates and highlights tags when you
@@ -132,7 +198,7 @@ Ctags in the background so stay tuned!
 Note: If you change this option it won't apply until you restart Vim, so
 you'll have to set this option in your |vimrc| script.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The *g:easytags_on_cursorhold* option
 
 As I explained above the plug-in by default doesn't update or highlight your
@@ -142,11 +208,29 @@ workflow. If it does you can disable the periodic update:
 >
     :let g:easytags_on_cursorhold = 0
 
-Note: Like the |g:easytags_always_enabled| option, if you change this option it
-won't apply until you restart Vim, so you'll have to set this option in your
-|vimrc| script.
+Note: Like the |g:easytags_always_enabled| option, if you change this option
+it won't apply until you restart Vim, so you'll have to set this option in
+your |vimrc| script.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+The *g:easytags_auto_update* option
+
+By default the plug-in automatically updates and highlights your tags when you
+stop typing for a moment. If you want to disable automatic updating while
+keeping automatic highlighting enabled you can set this option to false:
+>
+    :let g:easytags_auto_update = 0
+
+-------------------------------------------------------------------------------
+The *g:easytags_auto_highlight* option
+
+By default the plug-in automatically updates and highlights your tags when you
+stop typing for a moment. If you want to disable automatic highlighting while
+keeping automatic updating enabled you can set this option to false:
+>
+    :let g:easytags_auto_highlight = 0
+
+-------------------------------------------------------------------------------
 The *g:easytags_autorecurse* option
 
 When the |:UpdateTags| command is executed automatically or without arguments,
@@ -160,13 +244,13 @@ You have to explicitly enable this option because it should only be used while
 navigating around small directory trees. Imagine always having this option
 enabled and then having to edit a file in e.g. the root of your home
 directory: The 'easytags.vim' plug-in would freeze Vim for a long time while
-you'd have to wait for Exuberant Cags to scan thousands of files...
+you'd have to wait for Exuberant Ctags to scan thousands of files...
 
 Note that when you enable this option the 'easytags.vim' plug-in might ignore
-other options like |g:easytags_resolve_links|. This is an implementation detail
-which I intend to fix.
+other options like |g:easytags_resolve_links|. This is an implementation
+detail which I intend to fix.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The *g:easytags_include_members* option
 
 Exuberant Ctags knows how to generate tags for struct/class members in C++ and
@@ -182,16 +266,16 @@ Exuberant Ctags will be instructed to include struct/class members using the
 highlight them using the 'cMember' highlighting group. Because most color
 schemes don't distinguish the Identifier and Type (see |group-name|)
 highlighting groups all members will now probably look like type definitions.
-You can change that by executing any of the following Vim commands (from your
-vimrc script, a file type plug-in, etc.):
+You can change that by executing either of the following Vim commands (from
+your vimrc script, a file type plug-in, etc.):
 >
     " If you like one of the existing styles you can link them:
     highlight link cMember Special
->
+    
     " You can also define your own style if you want:
     highlight cMember gui=italic
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The *g:easytags_resolve_links* option
 
 UNIX has symbolic links [9] and hard links [10], both of which conflict with
@@ -206,11 +290,84 @@ run UNIX and use symbolic links) execute the following Vim command:
 >
     :let g:easytags_resolve_links = 1
 
-==============================================================================
+-------------------------------------------------------------------------------
+The *g:easytags_suppress_ctags_warning* option
+
+If this is set and not false, it will suppress the warning on startup if ctags
+is not found or not recent enough.
+>
+    :let g:easytags_suppress_ctags_warning = 1
+
+===============================================================================
+                              *easytags-faster-syntax-highlighting-using-python*
+Faster syntax highlighting using Python ~
+
+The Vim script implementation of dynamic syntax highlighting is quite slow on
+large tags files. When the Python Interface to Vim is enabled the easytags
+plug-in will therefor automatically use a Python script that performs dynamic
+syntax highlighting about twice as fast as the Vim script implementation. The
+following options are available to change the default configuration.
+
+-------------------------------------------------------------------------------
+The *g:easytags_python_enabled* option
+
+To disable the Python implementation of dynamic syntax highlighting you can
+set this option to false (0).
+
+-------------------------------------------------------------------------------
+The *g:easytags_python_script* option
+
+This option defines the pathname of the script that contains the Python
+implementation of dynamic syntax highlighting.
+
+===============================================================================
+How to customize the highlighting colors? ~
+
+The easytags plug-in defines new highlighting groups for dynamically
+highlighted tags. These groups are linked to Vim's default groups so that
+they're colored out of the box, but if you want you can change the styles. To
+do so use a 'highlight' command such as the ones given a few paragraphs back.
+Of course you'll need to change the group name. Here are the group names used
+by the easytags plug-in:
+
+ - Lua: 'luaFuncTag'
+
+ - C: 'cTypeTag', 'cEnumTag', 'cPreProcTag', 'cFunctionTag', 'cMemberTag'
+
+ - PHP: 'phpFunctionsTag', 'phpClassesTag'
+
+ - Vim: 'vimAutoGroupTag', 'vimCommandTag', 'vimFuncNameTag',
+   'vimScriptFuncNameTag'
+
+ - Python: 'pythonFunctionTag', 'pythonMethodTag', 'pythonClassTag'
+
+ - Java: 'javaClassTag', 'javaMethodTag'
+
+ - C#: 'csClassOrStructTag', 'csMethodTag'
+
+ - Ruby: 'rubyModuleNameTag', 'rubyClassNameTag', 'rubyMethodNameTag'
+
+As you can see each of these names ends in 'Tag' to avoid conflicts with the
+syntax modes shipped with Vim. And about the singular/plural confusion: I've
+tried to match the existing highlighting groups defined by popular syntax
+modes (except of course for the 'Tag' suffix).
+
+===============================================================================
+Passing custom command line arguments to Exuberant Ctags ~
+
+You may want to run Exuberant Ctags with specific command line options, for
+example the code_complete [12] plug-in requires the signature field to be
+present. To do this you can create a configuration file for Exuberant Ctags,
+e.g. '~/.ctags' on UNIX or '%USERPROFILE%\ctags.cnf' on Windows. The file
+should contain one command line option per line. See the Exuberant Ctags
+manual [13] for details.
+
+===============================================================================
+                                                      *easytags-troubleshooting*
 Troubleshooting ~
 
-------------------------------------------------------------------------------
-:HighlightTags only works for the tags file created by :UpdateTags ~
+-------------------------------------------------------------------------------
+|:HighlightTags| only works for the tags file created by |:UpdateTags| ~
 
 If you want to create tags files and have their tags highlighted by the
 'easytags.vim' plug-in then you'll have to create the tags file with certain
@@ -220,15 +377,15 @@ arguments to Exuberant Ctags:
 
 The '--fields=+l' argument makes sure that Exuberant Ctags includes a
 'language:...' property with each entry in the tags file. This is required by
-the |:HighlightTags| command so it can filter tags by their file type. The other
-two arguments make sure Exuberant Ctags generates tags for function prototypes
-in C/C++ source code.
+the |:HighlightTags| command so it can filter tags by their file type. The
+other two arguments make sure Exuberant Ctags generates tags for function
+prototypes in C/C++ source code.
 
-If you have the |g:easytags_include_members| option enabled (its off by default)
-then you'll also need to add the '--extra=+q' argument so that Exuberant Ctags
-generates tags for structure/class members.
+If you have the |g:easytags_include_members| option enabled (its off by
+default) then you'll also need to add the '--extra=+q' argument so that
+Exuberant Ctags generates tags for structure/class members.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 The plug-in complains that Exuberant Ctags isn't installed ~
 
 After a Mac OS X user found out the hard way that the 'ctags' executable isn't
@@ -252,10 +409,10 @@ still complains, try executing the following command from inside Vim:
 
 If this doesn't print the location where you installed Exuberant Ctags it
 means your system already had a 'ctags' executable but it isn't compatible
-with Exuberant Ctags 5.5 and you'll need to set the |g:easytags_cmd| option (see
-above) so the plug-in knows which 'ctags' to run.
+with Exuberant Ctags 5.5 and you'll need to set the |g:easytags_cmd| option
+(see above) so the plug-in knows which 'ctags' to run.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Vim locks up while the plug-in is running ~
 
 Once or twice now in several years I've experienced Exuberant Ctags getting
@@ -277,7 +434,7 @@ Every time the plug-in executes it will time how long the execution takes and
 add the results to Vim's message history, which you can view by executing the
 |:messages| command.
 
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Failed to highlight tags because pattern is too big! ~
 
 If the 'easytags.vim' plug-in fails to highlight your tags and the error
@@ -300,28 +457,31 @@ named '.tags' in the directory of the current file. Because of the ';' Vim
 also recurses upwards so that you can nest files arbitrarily deep under your
 project directories.
 
-------------------------------------------------------------------------------
-The plug-in doesn't seem to work in [Cygwin](http://en.wikipedia.org/wiki/Cygwin) ~
+-------------------------------------------------------------------------------
+The plug-in doesn't seem to work in Cygwin ~
 
-If you want to use the plug-in with Vim under Cygwin, you need to have the
-Cygwin version of Ctags installed instead of the Windows version (thanks to
-Alex Zuroff for reporting this!).
+If you want to use the plug-in with Vim under Cygwin [14], you need to have
+the Cygwin version of Ctags installed instead of the Windows version (thanks
+to Alex Zuroff for reporting this!).
 
-==============================================================================
+===============================================================================
+                                                              *easytags-contact*
 Contact ~
 
 If you have questions, bug reports, suggestions, etc. the author can be
 contacted at peter@peterodding.com. The latest version is available at
 http://peterodding.com/code/vim/easytags/ and http://github.com/xolox/vim-easytags.
-If you like this plug-in please vote for it on Vim Online [12].
+If you like this plug-in please vote for it on Vim Online [15].
 
-==============================================================================
+===============================================================================
+                                                              *easytags-license*
 License ~
 
-This software is licensed under the MIT license [13].
-Copyright 2010 Peter Odding <peter@peterodding.com>.
+This software is licensed under the MIT license [16]. Copyright 2011 Peter
+Odding <peter@peterodding.com>.
 
-==============================================================================
+===============================================================================
+                                                           *easytags-references*
 References ~
 
 [1] http://ctags.sourceforge.net/
@@ -329,13 +489,16 @@ References ~
 [3] http://en.wikipedia.org/wiki/Ctags
 [4] http://ftp.vim.org/vim/runtime/syntax/
 [5] http://ctags.sourceforge.net/languages.html
-[6] http://peterodding.com/code/vim/downloads/easytags
+[6] http://peterodding.com/code/vim/downloads/easytags.zip
 [7] http://peterodding.com/code/vim/shell/
 [8] http://en.wikipedia.org/wiki/Dynamic-link_library
 [9] http://en.wikipedia.org/wiki/Symbolic_link
 [10] http://en.wikipedia.org/wiki/Hard_link
 [11] http://en.wikipedia.org/wiki/Canonicalization
-[12] http://www.vim.org/scripts/script.php?script_id=3114
-[13] http://en.wikipedia.org/wiki/MIT_License
+[12] http://www.vim.org/scripts/script.php?script_id=1764
+[13] http://ctags.sourceforge.net/ctags.html#FILES
+[14] http://en.wikipedia.org/wiki/Cygwin
+[15] http://www.vim.org/scripts/script.php?script_id=3114
+[16] http://en.wikipedia.org/wiki/MIT_License
 
-vim: syntax=help nospell
+vim: ft=help
