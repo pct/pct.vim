@@ -5,6 +5,9 @@ autocmd BufRead,BufNewFile *.py map <F7> :% w !pyflakes<CR>
 autocmd BufRead,BufNewFile *.php map <F5> :% w !php<CR>
 autocmd BufRead,BufNewFile *.php map <F6> :% w !php -l<CR>
 
+" 遇到 Makefile 就 set noexpandtab
+autocmd BufRead,BufNewFile ?akefile* set noexpandtab
+
 set guifont=Droid\ Sans\ Mono\ 12
 let g:use_zen_complete_tag = 1
 let g:user_zen_expandabbr_key = '<c-e>'

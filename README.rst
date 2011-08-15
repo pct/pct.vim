@@ -35,6 +35,10 @@ FAQ
 
     let g:easytags_cmd = '/usr/local/bin/ctags' 
 
+#. Vim goes very slow::
+
+    Please `rm ~/.vimtags` and then check again, but you will lose your previous easytags settings.
+
 --------------------------------
 Create your own vim environment
 --------------------------------
@@ -78,6 +82,7 @@ vim scripts in bundle
     vim-autocomplpop
     vim-coffee-script
     vim-easytags
+    vim-easymotion
     vim-fuzzyfinder
     vim-l9
     vim-peepopen
