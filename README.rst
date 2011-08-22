@@ -12,7 +12,7 @@ How to use
 
 2. update submodule in pct.vim::
 
-    $ cd pct.vim; ./update_submodule.sh
+    $ cd pct.vim; ./update_submodule.sh; cd -
 
 3. link .vimrc and .vim from pct.vim::
 
