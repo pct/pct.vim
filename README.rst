@@ -34,7 +34,11 @@ The manual way to install pct.vim
 3. link .vimrc and .vim from pct.vim::
 
     $ ln -s pct.vim/.vimrc
-    $ ln -s pct.vim/.vim 
+    $ ln -s pct.vim/.vim
+
+4. add command-t support::
+
+    $ cd ~/pct.vim/.vim/bundle/Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install; cd -
 
 How to update
 -------------
