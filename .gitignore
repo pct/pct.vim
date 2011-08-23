@@ -1,9 +1,7 @@
 *~
 .vim/undofiles
 .vim/.netrwhist
-.vim/bundle/vim-autocomplpop/.hg/cache/
-.vim/bundle/vim-fuzzyfinder/.hg/cache/
-.vim/bundle/vim-l9/.hg/cache/
-.vim/bundle/vim-scmfrontend/.hg/cache/
 .vim/vimpyre.json
 .vim/vimpyre/
+.vim/bundle/*/doc/tag*
+.vim/bundle/*/.hg/cache/

@@ -1,4 +1,4 @@
-" 按 F5 自動以 !python 來執行現行 script
+" 執行現行 script 的按鈕
 autocmd BufRead,BufNewFile *.py map <F5> :% w !python<CR>
 autocmd BufRead,BufNewFile *.py map <F6> :% w !nosetests<CR>
 autocmd BufRead,BufNewFile *.py map <F7> :% w !pyflakes<CR>
@@ -8,13 +8,20 @@ autocmd BufRead,BufNewFile *.php map <F6> :% w !php -l<CR>
 " 遇到 Makefile 就 set noexpandtab
 autocmd BufRead,BufNewFile ?akefile* set noexpandtab
 
+" for ragtag
+inoremap <M-o>       <Esc>o
+inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
+
 set guifont=Droid\ Sans\ Mono\ 12
 let g:use_zen_complete_tag = 1
 let g:user_zen_expandabbr_key = '<c-e>'
 let python_highlight_all = 1
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:easytags_cmd = '/usr/local/bin/ctags'
+let g:EasyMotion_leader_key = '<Leader>m'
 
-call pathogen#helptags()
+call pathogen#infect()
 call pathogen#runtime_append_all_bundles()
 
 let g:user_zen_settings = {
@@ -109,7 +116,7 @@ imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -125,7 +132,7 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 "set completeopt+=longest
 "let g:neocomplcache_enable_auto_select = 1
 "let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 "inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 
 " Enable omni completion.
@@ -142,6 +149,8 @@ endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " ==== neocomplcache end ====
 
 "let g:acp_behaviorSnipmateLength=1

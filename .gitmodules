@@ -52,9 +52,6 @@
 [submodule ".vim/bundle/more.vim"]
 	path = .vim/bundle/more.vim
 	url = git://github.com/c9s/more.vim.git
-[submodule ".vim/bundle/dbext.vim"]
-	path = .vim/bundle/dbext.vim
-	url = git://github.com/vim-scripts/dbext.vim.git
 [submodule ".vim/bundle/fugitive.vim"]
 	path = .vim/bundle/fugitive.vim
 	url = git://github.com/vim-scripts/fugitive.vim.git
@@ -85,3 +82,24 @@
 [submodule ".vim/bundle/vim-easymotion"]
 	path = .vim/bundle/vim-easymotion
 	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule ".vim/bundle/ManPageView"]
+	path = .vim/bundle/ManPageView
+	url = git://github.com/vim-scripts/ManPageView.git
+[submodule ".vim/bundle/matchit"]
+	path = .vim/bundle/matchit
+	url = https://github.com/vim-scripts/matchit.zip
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule ".vim/bundle/pydiction"]
+	path = .vim/bundle/pydiction
+	url = https://github.com/vim-scripts/Pydiction.git
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/vim-easytags"]
+	path = .vim/bundle/vim-easytags
+	url = https://github.com/xolox/vim-easytags
+[submodule ".vim/bundle/Command-T"]
+	path = .vim/bundle/Command-T
+	url = https://github.com/vim-scripts/Command-T.git
