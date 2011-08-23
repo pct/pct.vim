@@ -103,3 +103,6 @@
 [submodule ".vim/bundle/Command-T"]
 	path = .vim/bundle/Command-T
 	url = https://github.com/vim-scripts/Command-T.git
+[submodule ".vim/bundle/checksyntax"]
+	path = .vim/bundle/checksyntax
+	url = https://github.com/tomtom/checksyntax_vim.git

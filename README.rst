@@ -12,6 +12,20 @@ Requirements
 
 #. links # for :Man <php_function>.php
 #. curl  # for more.vim, insert chinese words from '中文假文產生器'
+#. check and install what you need if you develop in these languages::
+
+    c, cpp     : Check syntax via splint
+    html       : Check syntax via tidy
+    javascript : Check syntax via jsl or gjslint
+    java       : Check syntax via jlint or javaCheckstyle
+    lua        : Parse file (luac -p)
+    php        : Check syntax (php -l)
+    phpp       : Parse a file (php -f) (alternative php checker)
+    python     : Check file with pyflakes
+    pylint     : Use the pylint compiler plugin (alternative python checker)
+    ruby       : Check syntax (ruby -c; no auto-checks)
+    tex, latex : Parse file (chktex -q -v0; no auto-checks)
+    xml, docbk : Check syntax via xmllint
 
 One Step Install (Do you trust me?)
 ------------------------------------
@@ -73,8 +87,24 @@ Create your own vim environment
 
 Vim scripts in bundle (and simple  howto)
 -----------------------------------------
+#. checksyntax https://github.com/tomtom/checksyntax_vim ::
 
-#. Align: https://github.com/vim-scripts/Align ::
+    :CheckSyntax
+
+    c, cpp     : Check syntax via splint
+    html       : Check syntax via tidy
+    javascript : Check syntax via jsl or gjslint
+    java       : Check syntax via jlint or javaCheckstyle
+    lua        : Parse file (luac -p)
+    php        : Check syntax (php -l)
+    phpp       : Parse a file (php -f) (alternative php checker)
+    python     : Check file with pyflakes
+    pylint     : Use the pylint compiler plugin (alternative python checker)
+    ruby       : Check syntax (ruby -c; no auto-checks)
+    tex, latex : Parse file (chktex -q -v0; no auto-checks)
+    xml, docbk : Check syntax via xmllint
+
+#. Align https://github.com/vim-scripts/Align ::
 
     :5,10Align =
         Align on '=' signs
