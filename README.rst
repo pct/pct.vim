@@ -43,7 +43,6 @@ How to update
     $ cd pct.vim
     $ git pull; ./update_submodule.sh
 
----
 FAQ
 ---
 
@@ -60,7 +59,6 @@ FAQ
     1. Please make sure your vim had build for ruby support 
     2. cd ~/pct.vim/.vim/bundle/Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install 
 
---------------------------------
 Create your own vim environment
 --------------------------------
 
@@ -68,9 +66,9 @@ Create your own vim environment
 
 2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
 
-----------------------
-vim scripts in bundle
-----------------------
+
+Vim scripts in bundle (and simple  howto)
+-----------------------------------------
 
 #. Align: https://github.com/vim-scripts/Align ::
 
