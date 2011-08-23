@@ -2,10 +2,21 @@
 pct.vim
 =======
 
-----------
-How to use
-----------
+Requirements
+-------------
+#. git
+#. mercurial hg
+#. ctags
 
+One Step Install (Do you trust me?)
+------------------------------------
+::
+    wget --no-check-certificate https://github.com/pct/pct.vim/raw/master/install.sh -O - | sh
+
+The origin .vim and .vimrc will be renamed to .vim.yours and .vimrc.yours
+
+The manual way to install pct.vim
+----------------------------------
 1. clone to your home directory::
 
     $ git clone git://github.com/pct/pct.vim.git
@@ -19,7 +30,6 @@ How to use
     $ ln -s pct.vim/.vimrc
     $ ln -s pct.vim/.vim 
 
--------------
 How to update
 -------------
 ::
