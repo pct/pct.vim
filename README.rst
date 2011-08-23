@@ -10,8 +10,9 @@ Requirements
 
 One Step Install (Do you trust me?)
 ------------------------------------
-::
-    wget --no-check-certificate https://github.com/pct/pct.vim/raw/master/install.sh -O - | sh
+command::
+
+    $ wget --no-check-certificate https://github.com/pct/pct.vim/raw/master/install.sh -O - | sh
 
 The origin .vim and .vimrc will be renamed to .vim.yours and .vimrc.yours
 
