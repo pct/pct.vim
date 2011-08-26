@@ -69,7 +69,7 @@
 	url = git://github.com/vim-scripts/Engspchk.git
 [submodule ".vim/bundle/nginx.vim"]
 	path = .vim/bundle/nginx.vim
-	url = https://github.com/vim-scripts/nginx.vim.git
+	url = git://github.com/vim-scripts/nginx.vim.git
 [submodule ".vim/bundle/gundo.vim"]
 	path = .vim/bundle/gundo.vim
 	url = git://github.com/sjl/gundo.vim.git
@@ -87,22 +87,22 @@
 	url = git://github.com/vim-scripts/ManPageView.git
 [submodule ".vim/bundle/matchit"]
 	path = .vim/bundle/matchit
-	url = https://github.com/vim-scripts/matchit.zip
+	url = git://github.com/vim-scripts/matchit.zip
 [submodule ".vim/bundle/nerdtree"]
 	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree
+	url = git://github.com/scrooloose/nerdtree
 [submodule ".vim/bundle/pydiction"]
 	path = .vim/bundle/pydiction
-	url = https://github.com/vim-scripts/Pydiction.git
+	url = git://github.com/vim-scripts/Pydiction.git
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
+	url = git://github.com/ervandew/supertab.git
 [submodule ".vim/bundle/vim-easytags"]
 	path = .vim/bundle/vim-easytags
-	url = https://github.com/xolox/vim-easytags
+	url = git://github.com/xolox/vim-easytags
 [submodule ".vim/bundle/Command-T"]
 	path = .vim/bundle/Command-T
-	url = https://github.com/vim-scripts/Command-T.git
+	url = git://github.com/vim-scripts/Command-T.git
 [submodule ".vim/bundle/checksyntax"]
 	path = .vim/bundle/checksyntax
-	url = https://github.com/tomtom/checksyntax_vim.git
+	url = git://github.com/tomtom/checksyntax_vim.git
