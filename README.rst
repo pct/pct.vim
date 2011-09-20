@@ -195,7 +195,15 @@ Vim scripts in bundle (and simple  howto)
         :Man pprint.py
 
 
-#. matchit https://github.com/vim-scripts/matchit.zip 
+#. matchit https://github.com/vim-scripts/matchit.zip ::
+
+    Use % to jump to start/end of function or html tags.
+
+    Currently, the following languages are supported:  Ada, ASP with VBS, Csh,
+    DTD, Entity, Essbase, Fortran, HTML, JSP (same as HTML), LaTeX, Lua, Pascal,
+    SGML, Shell, Tcsh, Vim, XML.  Other languages may already have support via
+    the default |filetype-plugin|s in the standard vim distribution.
+
 #. more.vim https://github.com/c9s/more.vim ::
 
     snipMate.vim : [count]more<Tab>，其中 [count] 是可选的数值。
