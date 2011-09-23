@@ -106,3 +106,6 @@
 [submodule ".vim/bundle/checksyntax"]
 	path = .vim/bundle/checksyntax
 	url = git://github.com/tomtom/checksyntax_vim.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = https://github.com/groenewege/vim-less.git

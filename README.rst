@@ -483,6 +483,10 @@ Vim scripts in bundle (and simple  howto)
     \t
     \b
 
+#. vim-less https://github.com/groenewege/vim-less ::
+
+    Syntax highlighting for the dynamic stylesheet language LESS (http://lesscss.org/)
+
 #. zencoding-vim https://github.com/mattn/zencoding-vim ::
 
     Tutorial of zencoding.vim
