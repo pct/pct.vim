@@ -487,6 +487,18 @@ Vim scripts in bundle (and simple  howto)
 
     Syntax highlighting for the dynamic stylesheet language LESS (http://lesscss.org/)
 
+#. present.vim https://github.com/pct/present.vim ::
+
+    Use vim as a presentation tool for Vim.
+
+    :StartPresent
+
+#. VST https://github.com/vim-scripts/VST :: 
+
+    Vim reStructured Text
+
+    :VSTi html
+
 #. zencoding-vim https://github.com/mattn/zencoding-vim ::
 
     Tutorial of zencoding.vim

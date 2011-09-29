@@ -109,3 +109,9 @@
 [submodule ".vim/bundle/vim-less"]
 	path = .vim/bundle/vim-less
 	url = https://github.com/groenewege/vim-less.git
+[submodule ".vim/bundle/VST"]
+	path = .vim/bundle/VST
+	url = https://github.com/vim-scripts/VST.git
+[submodule ".vim/bundle/present.vim"]
+	path = .vim/bundle/present.vim
+	url = https://github.com/pct/present.vim.git
