@@ -497,7 +497,7 @@ Vim scripts in bundle (and simple  howto)
 
     Vim reStructured Text
 
-    :VSTi html
+    :Vsti html
 
 #. zencoding-vim https://github.com/mattn/zencoding-vim ::
 
