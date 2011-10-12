@@ -358,7 +358,7 @@ https://github.com/pct/pct.vim
 
 * vimpyre 安裝
 
-  - python 的 pip or eazy_install::
+  - python 的 pip or easy_install::
 
     $ sudo pip install vimpyre
 
@@ -415,6 +415,6 @@ https://github.com/pct/pct.vim
 
   * Plurk: @pct
   * Github: @pct
-  * FB: @daniel_freebsd.py
+  * FB: @freebsd.py
   
 pct @vim-taiwan, @TOSSUG, 2011/10/11
