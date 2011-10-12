@@ -1,4 +1,3 @@
-=======
 pct.vim
 =======
 
@@ -83,6 +82,19 @@ Create your own vim environment
 1. use pct.vim for basement
 
 2. use my "Vimpyre" project to add other useful vim scripts: https://github.com/pct/vimpyre
+
+Todo
+----
+
+- core.pct.vim
+  * just core.pct.vim, clean and slim.
+  * with .vim/bundles and .vim/enable_bundles dir.
+  * add settings to .vimrc, when .vimrc is saved, just use soft link to add enable bundles to `enable_bundles dir`.
+
+- ext.pct.vim for extends
+  * full bundles that I pick up.
+
+- learn good parts from vundle and other vimfiles.
 
 
 Vim scripts in bundle (and simple  howto)
