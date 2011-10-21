@@ -341,7 +341,7 @@ https://github.com/pct/pct.vim
 * vimpyre
 
   - vim
-  - pythoh
+  - python
   - git
   - pathogen
 
