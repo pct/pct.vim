@@ -40,9 +40,9 @@ The manual way to install pct.vim
 
     $ git clone git://github.com/pct/pct.vim.git
 
-2. update submodule in pct.vim::
+2. update pct.vim::
 
-    $ cd pct.vim; ./update_submodule.sh; cd -
+    $ cd pct.vim; ./update.sh; cd -
 
 3. link .vimrc and .vim from pct.vim::
 
@@ -58,7 +58,7 @@ How to update
 ::
 
     $ cd pct.vim
-    $ git pull; ./update_submodule.sh
+    $ ./update.sh
 
 FAQ
 ---
