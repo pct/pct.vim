@@ -1,6 +1,19 @@
 pct.vim
 =======
 
+
+
+
+
+I've switched to use my another clean vim project https://github.com/pct/vimrc-core
+
+
+
+
+
+
+
+
 Requirements
 -------------
 #. git

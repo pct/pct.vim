@@ -55,9 +55,6 @@
 [submodule ".vim/bundle/fugitive.vim"]
 	path = .vim/bundle/fugitive.vim
 	url = git://github.com/vim-scripts/fugitive.vim.git
-[submodule ".vim/bundle/man-page-view"]
-	path = .vim/bundle/man-page-view
-	url = git://github.com/vim-scripts/ManPageView.git
 [submodule ".vim/bundle/Align"]
 	path = .vim/bundle/Align
 	url = git://github.com/vim-scripts/Align.git
