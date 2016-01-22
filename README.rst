@@ -76,7 +76,7 @@ How to update
 FAQ
 ---
 
-#. Cannot found ctags? Just find your ctags path and add the example setting bellow to your .vimrc::
+#. Cannot found ctags? Just find your ctags path and add the example setting below to your .vimrc::
 
     let g:easytags_cmd = '/usr/local/bin/ctags' 
 
@@ -86,7 +86,7 @@ FAQ
 
 #. I want to use command-t, but always something wrong::
 
-    1. Please make sure your vim had build for ruby support 
+    1. Please make sure your vim had built for ruby support 
     2. cd ~/pct.vim/.vim/bundle/Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install 
 
 Create your own vim environment
